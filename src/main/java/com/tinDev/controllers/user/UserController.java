@@ -14,7 +14,8 @@ import java.util.Optional;
 @RequestMapping("/api/users")
 public class UserController {
     private UserService userService;
-    @Autowired private UserDtoModelConverter userDtoModelConverter;
+    @Autowired
+    private UserDtoModelConverter userDtoModelConverter;
 
     @Autowired
     public UserController(UserService userService) {

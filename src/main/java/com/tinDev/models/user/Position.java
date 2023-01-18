@@ -1,11 +1,10 @@
 package com.tinDev.models.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
 import com.tinDev.models.user.enums.Carrier;
 import com.tinDev.models.user.enums.Seniority;
-
-import javax.persistence.*;
 
 @Data
 @Entity
