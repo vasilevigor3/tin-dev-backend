@@ -8,10 +8,10 @@ import com.tinDev.repository.userVacancyMatch.UserVacancyMatchRepository;
 import com.tinDev.repository.vacancy.VacancyRepository;
 import com.tinDev.services.user.UserService;
 import com.tinDev.services.vacancy.VacancyService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
