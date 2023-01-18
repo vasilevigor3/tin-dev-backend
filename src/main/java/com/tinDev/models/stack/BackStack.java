@@ -1,6 +1,7 @@
 package com.tinDev.models.stack;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "back_stack")

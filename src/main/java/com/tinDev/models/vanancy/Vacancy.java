@@ -4,9 +4,9 @@ import com.tinDev.models.stack.TechStack;
 import com.tinDev.models.user.enums.Carrier;
 import com.tinDev.models.user.enums.Seniority;
 import com.tinDev.models.userVacancyMatch.UserVacancyMatch;
-import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 

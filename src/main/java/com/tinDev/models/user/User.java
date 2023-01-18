@@ -4,11 +4,11 @@ import com.tinDev.models.stack.Language;
 import com.tinDev.models.stack.TechStack;
 import com.tinDev.models.user.enums.WorkType;
 import com.tinDev.models.userVacancyMatch.UserVacancyMatch;
-import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity

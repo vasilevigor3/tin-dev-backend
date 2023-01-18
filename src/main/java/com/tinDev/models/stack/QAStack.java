@@ -1,7 +1,8 @@
 package com.tinDev.models.stack;
 
-import jakarta.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Data
 @Entity

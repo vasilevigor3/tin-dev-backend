@@ -1,8 +1,9 @@
 package com.tinDev.models.user;
 
 
-import jakarta.persistence.*;
 import lombok.Data;
+
+import javax.persistence.*;
 
 @Data
 @Entity
