@@ -5,12 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class UserDto {
-    private int userId;
-    private Set<UserVacancyMatch> matches;
+    private Long userId;
+    private List<UserVacancyMatch> matches;
 }

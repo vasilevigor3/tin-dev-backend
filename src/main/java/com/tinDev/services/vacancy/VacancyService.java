@@ -7,11 +7,11 @@ import java.util.Optional;
 
 
 public interface VacancyService {
-    Optional< Vacancy> findById(int id);
+    Optional< Vacancy> findById(long id);
     List<Vacancy> findAll();
     Vacancy createVacancy(Vacancy vacancy);
-    Vacancy updateVacancy(int id, Vacancy vacancy);
-    void deleteVacancy(int id);
+    Vacancy updateVacancy(long id, Vacancy vacancy);
+    void deleteVacancy(long id);
 }
 
 

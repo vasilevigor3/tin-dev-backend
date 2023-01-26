@@ -23,6 +23,15 @@ public class UserVacancyMatchController {
         return match.map(m -> ResponseEntity.ok().body(m))
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/by/{userId}")
+    public List<UserVacancyMatch> getUserVacancyMatchByUserId(@PathVariable Long userId) {
+        List<UserVacancyMatch> match = userVacancyMatchService.findByUserId(userId);
+
+        return match;
+//        return match.map(m -> ResponseEntity.ok().body(m))
+//                .orElse(ResponseEntity.notFound().build());
+    }
     @GetMapping
     public List<UserVacancyMatch> finaAllUserVacancyMatches() {
         return userVacancyMatchService.findAll();

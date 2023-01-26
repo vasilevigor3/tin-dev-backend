@@ -40,6 +40,11 @@ public class UserVacancyMatchServiceImpl implements UserVacancyMatchService {
     }
 
     @Override
+    public List<UserVacancyMatch> findByUserId(Long id) {
+        return userVacancyMatchRepository.findCustomMatchesForCurrentUser(id);
+    }
+
+    @Override
     public UserVacancyMatch save(UserVacancyMatch userVacancyMatch) {
         final User user = userService.findById(userVacancyMatch.getUser().getUserId()).get();
         final Vacancy vacancy = vacancyService.findById(userVacancyMatch.getVacancy().getId()).get();
@@ -61,10 +66,5 @@ public class UserVacancyMatchServiceImpl implements UserVacancyMatchService {
     @Override
     public void deleteById(Long id) {
         userVacancyMatchRepository.deleteById(id);
-    }
-
-    @Override
-    public Set<UserVacancyMatch> findAllMatchesForCurrentUser(final String userId) {
-        return userVacancyMatchRepository.findCustomMatchesForCurrentUser(userId);
     }
 }

@@ -1,8 +1,8 @@
 package com.tinDev.convertrs.user;
 
-import com.tinDev.models.userVacancyMatch.UserVacancyMatch;
 import com.tinDev.models.user.User;
 import com.tinDev.models.user.dto.UserDto;
+import com.tinDev.models.userVacancyMatch.UserVacancyMatch;
 import com.tinDev.services.userVacancyMatch.UserVacancyMatchService;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -10,7 +10,7 @@ import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class UserDtoModelConverter {
@@ -26,8 +26,8 @@ public class UserDtoModelConverter {
             propertyMapper = modelMapper.createTypeMap(User.class, UserDto.class);
         }
 
-        Converter<Integer, Set<UserVacancyMatch>> converter =
-                (source -> userVacancyMatchService.findAllMatchesForCurrentUser(String.valueOf(source.getSource())));
+        Converter<Long, List<UserVacancyMatch>> converter =
+                (source -> userVacancyMatchService.findByUserId(source.getSource()));
 
         propertyMapper.addMappings(mapper -> mapper.using(converter).map(User::getUserId, UserDto::setMatches));
 

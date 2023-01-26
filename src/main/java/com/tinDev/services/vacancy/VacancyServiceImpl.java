@@ -23,7 +23,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Optional<Vacancy> findById(int id) {
+    public Optional<Vacancy> findById(long id) {
         return vacancyRepository.findById(id);
     }
 
@@ -33,7 +33,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Vacancy updateVacancy(int id, Vacancy vacancy) {
+    public Vacancy updateVacancy(long id, Vacancy vacancy) {
         Optional<Vacancy> result = vacancyRepository.findById(id);
         if (result.isPresent()) {
             Vacancy existingVacancy = result.get();
@@ -49,7 +49,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public void deleteVacancy(int id) {
+    public void deleteVacancy(long id) {
         vacancyRepository.deleteById(id);
     }
 }
