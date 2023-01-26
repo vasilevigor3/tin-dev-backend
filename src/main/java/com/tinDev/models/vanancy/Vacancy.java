@@ -1,5 +1,6 @@
 package com.tinDev.models.vanancy;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tinDev.models.stack.TechStack;
 import com.tinDev.models.user.enums.Carrier;
 import com.tinDev.models.user.enums.Seniority;
@@ -8,7 +9,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -45,6 +45,7 @@ public class Vacancy {
     )
     private List<TechStack> techStack;
 
-    @OneToMany(mappedBy = "vacancy", cascade = CascadeType.ALL)
-    private Set<UserVacancyMatch> matches;
+    @OneToMany(mappedBy = "vacancy")
+    @JsonManagedReference(value="vacancy-reference")
+    private List<UserVacancyMatch> matches;
 }

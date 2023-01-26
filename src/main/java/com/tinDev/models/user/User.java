@@ -1,5 +1,6 @@
 package com.tinDev.models.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tinDev.models.stack.Language;
 import com.tinDev.models.stack.TechStack;
 import com.tinDev.models.user.enums.WorkType;
@@ -61,6 +62,7 @@ public class User {
     )
     private Set<TechStack> techStack;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<UserVacancyMatch> matches;
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference(value="user-reference")
+    private List<UserVacancyMatch> matches;
 }

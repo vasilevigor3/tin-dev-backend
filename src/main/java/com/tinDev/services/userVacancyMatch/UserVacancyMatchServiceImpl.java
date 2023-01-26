@@ -11,10 +11,7 @@ import com.tinDev.services.vacancy.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserVacancyMatchServiceImpl implements UserVacancyMatchService {
@@ -38,23 +35,23 @@ public class UserVacancyMatchServiceImpl implements UserVacancyMatchService {
     }
 
     @Override
-    public UserVacancyMatch findById(Long id) {
-        return userVacancyMatchRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+    public Optional<UserVacancyMatch> findById(Long id) {
+        return userVacancyMatchRepository.findById(id);
     }
 
     @Override
     public UserVacancyMatch save(UserVacancyMatch userVacancyMatch) {
         final User user = userService.findById(userVacancyMatch.getUser().getUserId()).get();
-        final Vacancy vacancy = vacancyService.getVacancy(userVacancyMatch.getVacancy().getId());
-        user.setMatches(Collections.singleton(userVacancyMatch));
-        vacancy.setMatches(Collections.singleton(userVacancyMatch));
+        final Vacancy vacancy = vacancyService.findById(userVacancyMatch.getVacancy().getId()).get();
+        user.setMatches(Collections.singletonList(userVacancyMatch));
+        vacancy.setMatches(Collections.singletonList(userVacancyMatch));
 
         return userVacancyMatchRepository.save(userVacancyMatch);
     }
 
     @Override
     public UserVacancyMatch update(Long id, UserVacancyMatch userVacancyMatch) {
-        UserVacancyMatch existingUserVacancyMatch = findById(id);
+        UserVacancyMatch existingUserVacancyMatch = findById(id).get();
         existingUserVacancyMatch.setUser(userVacancyMatch.getUser());
         existingUserVacancyMatch.setVacancy(userVacancyMatch.getVacancy());
         existingUserVacancyMatch.setMatchDate(userVacancyMatch.getMatchDate());

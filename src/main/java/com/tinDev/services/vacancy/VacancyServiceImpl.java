@@ -1,12 +1,12 @@
 package com.tinDev.services.vacancy;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.tinDev.models.vanancy.Vacancy;
 import com.tinDev.repository.vacancy.VacancyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VacancyServiceImpl implements VacancyService {
@@ -23,13 +23,12 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
-    public Vacancy getVacancy(int id) {
-        Optional<Vacancy> result = vacancyRepository.findById(id);
-        return result.orElse(null);
+    public Optional<Vacancy> findById(int id) {
+        return vacancyRepository.findById(id);
     }
 
     @Override
-    public List<Vacancy> getAllVacancies() {
+    public List<Vacancy> findAll() {
         return vacancyRepository.findAll();
     }
 

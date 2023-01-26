@@ -2,9 +2,9 @@ package com.tinDev.controllers.user;
 
 import com.tinDev.convertrs.user.UserDtoModelConverter;
 import com.tinDev.models.user.User;
-import com.tinDev.models.user.dto.UserDto;
 import com.tinDev.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,33 +13,26 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    @Autowired
     private UserService userService;
     @Autowired
     private UserDtoModelConverter userDtoModelConverter;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping
-    public List<User> findAll() {
-        return userService.findAll();
-    }
 
     @GetMapping("/{id}")
-    public UserDto findById(@PathVariable int id) {
-        Optional<User> byId = userService.findById(id);
-        User user = byId.get();
-
-        return userDtoModelConverter.convertToEntity(user);
+    public ResponseEntity<User> findById(@PathVariable int id) {
+        Optional<User> user = userService.findById(id);
+        return user.map(c -> ResponseEntity.ok().body(c))
+                .orElse(ResponseEntity.notFound().build());
     }
-
+    @GetMapping
+    public List<User> findAllUsers() {
+        return userService.findAll();
+    }
     @PostMapping
-    public User save(@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         return userService.save(user);
     }
-
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable int id) {
         userService.deleteById(id);
